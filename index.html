@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mutyaonyourface</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="./assets/cac404a15c-css2.css"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="./assets/aff6ea18eb-all.min.css">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="./assets/d1d3db98e6-card.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="./assets/a3528e4157ce5bd8ea55657f1bea7f90.jpg">
+</head>
+
+<body>
+    <!-- Full-Screen Click to Enter Overlay -->
+    <div id="click-to-enter-overlay">
+        <div class="cte-orb cte-orb-1"></div>
+        <div class="cte-orb cte-orb-2"></div>
+        <div class="cte-orb cte-orb-3"></div>
+        <div class="cte-inner">
+            <div class="cte-avatar-wrapper">
+                <div class="cte-ring cte-ring-1"></div>
+                <div class="cte-ring cte-ring-2"></div>
+                <div class="cte-ring cte-ring-3"></div>
+                <img src="./assets/avatar.gif" alt="Mutya" class="cte-avatar">
+            </div>
+            <h1 class="cte-name">Mutya</h1>
+            <p class="cte-tagline">stox &amp; tambayan,pack</p>
+            <div class="cte-enter-btn">
+                <span class="cte-enter-text">Click to Enter</span>
+                <i class="fas fa-arrow-right cte-arrow"></i>
+            </div>
+            <p class="cte-hint">or press any key</p>
+        </div>
+    </div>
+
+    <!-- Background Elements (similar to guns.lol) -->
+    <div class="grid-overlay"></div>
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+    <canvas id="particle-canvas"></canvas>
+
+
+
+    <!-- Main layout wrapper to stack card and music player closely -->
+    <div class="profile-layout-wrapper">
+        <!-- Main guns.lol Profile Card Wrapper -->
+        <div class="card-container">
+            <div class="profile-card" id="profile-card">
+                <div class="card-glow"></div>
+
+                <!-- Avatar Section -->
+                <div class="avatar-container">
+                    <img src="./assets/avatar.gif" alt="Mutya" class="avatar-img">
+                    <div class="avatar-glow"></div>
+                </div>
+
+                <!-- Name with Glitch Particles Container -->
+                <div class="name-container">
+                    <div class="glitch-wrapper">
+                        <!-- Little black particle dots scattered around the name -->
+                        <div class="particle-dots">
+                            <span class="p-dot pd-1"></span>
+                            <span class="p-dot pd-2"></span>
+                            <span class="p-dot pd-3"></span>
+                            <span class="p-dot pd-4"></span>
+                            <span class="p-dot pd-5"></span>
+                            <span class="p-dot pd-6"></span>
+                            <span class="p-dot pd-7"></span>
+                            <span class="p-dot pd-8"></span>
+                            <span class="p-dot pd-9"></span>
+                            <span class="p-dot pd-10"></span>
+                            <span class="p-dot pd-11"></span>
+                            <span class="p-dot pd-12"></span>
+                            <span class="p-dot pd-13"></span>
+                            <span class="p-dot pd-14"></span>
+                            <span class="p-dot pd-15"></span>
+                        </div>
+                        <h1 class="profile-name">MUTYA</h1>
+                    </div>
+                </div>
+
+                <!-- Role Badges Row -->
+                <div class="badges-row">
+                    <span class="role-badge badge-owner">
+                        <i class="fas fa-crown"></i> Owner:hesu,red,rei,chika,reeo
+                    </span>
+                </div>
+                <div class="profile-lanyard" aria-label="Profile status">
+                    <div class="lanyard-status">
+                        <span class="lanyard-dot"></span>
+                        <span class="lanyard-label">Online</span>
+                    </div>
+                    <div class="lanyard-track">
+                        <i class="fas fa-headphones"></i>
+                        <span>Listening to Die Young</span>
+                    </div>
+                </div>
+
+                <!-- Horizontal Social Links Row -->
+                <div class="social-row-container">
+                    <a href="https://discord.gg/4DdZqP9Bwt" target="_blank" class="social-box box-discord"
+                        title="Discord">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Music Player Dock (Floating at bottom center) -->
+        <div class="music-dock-container">
+            <div class="music-dock-wide" id="music-dock-wide">
+                <!-- Left: Album Art -->
+                <div class="dock-left">
+                    <img src="./assets/829e95d5ef-album_art.png" alt="Album Art" class="dock-album-art" id="dock-album-art">
+                </div>
+
+                <!-- Center: Track details and Progress Bar -->
+                <div class="dock-center">
+                    <div class="dock-track-info">
+                        <span class="dock-track-title" id="dock-track-title">Die Young</span>
+                    </div>
+                    <div class="dock-progress-wrapper">
+                        <span class="dock-time-text" id="dock-time-elapsed">0:00</span>
+                        <div class="dock-progress-bar" id="dock-progress-bar">
+                            <div class="dock-progress-fill" id="dock-progress-fill"></div>
+                        </div>
+                        <span class="dock-time-text" id="dock-time-total">0:00</span>
+                    </div>
+                </div>
+
+                <!-- Right: Controls & Volume -->
+                <div class="dock-right">
+                    <button class="dock-btn" id="dock-prev-btn" title="Previous Track"><i
+                            class="fas fa-backward-step"></i></button>
+                    <button class="dock-btn play-pause-btn" id="dock-play-btn" title="Play"><i
+                            class="fas fa-play"></i></button>
+                    <button class="dock-btn" id="dock-next-btn" title="Next Track"><i
+                            class="fas fa-forward-step"></i></button>
+
+                    <!-- Volume Controls -->
+                    <div class="dock-volume-container">
+                        <button class="dock-btn" id="dock-volume-btn" title="Mute/Unmute"><i
+                                class="fas fa-volume-high"></i></button>
+                        <input type="range" min="0" max="1" step="0.05" value="0.8" class="volume-slider"
+                            id="dock-volume-slider">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End .profile-layout-wrapper -->
+
+    <audio id="card-audio" loop preload="auto" src="assets/bg-music.mp3"></audio>
+
+    <!-- Vanilla Tilt for 3D card tilt -->
+    <script src="./assets/23b6c42b86-vanilla-tilt.min.js"></script>
+    <script>
+        // Init 3D Tilt on the ENTIRE wrapper so card + music dock tilt together as one unit
+        if (!window.matchMedia('(pointer: coarse)').matches) {
+            VanillaTilt.init(document.querySelector(".profile-layout-wrapper"), {
+                max: 5,
+                speed: 1200,
+                glare: false   /* Disabled - was causing white flashes on sides */
+            });
+        }
+
+        // Click-to-Enter Overlay Logic
+        const overlay = document.getElementById('click-to-enter-overlay');
+        function dismissOverlay() {
+            if (!overlay || overlay.classList.contains('cte-dismissed')) return;
+            overlay.classList.add('cte-dismissed');
+            setTimeout(() => overlay.remove(), 800);
+        }
+        if (overlay) {
+            overlay.addEventListener('click', dismissOverlay);
+            document.addEventListener('keydown', dismissOverlay, { once: true });
+        }
+
+        // Particle Background Logic
+
+        const canvas = document.getElementById('particle-canvas');
+        if (canvas) {
+            const isMobile = window.innerWidth <= 768 || window.matchMedia('(pointer: coarse)').matches;
+            if (isMobile) {
+                canvas.style.display = 'none';
+            } else {
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                window.addEventListener('resize', () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
+
+                let particles = [];
+                for (let i = 0; i < 35; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        size: Math.random() * 1.5 + 0.5,
+                        speedX: Math.random() * 0.3 - 0.15,
+                        speedY: Math.random() * 0.3 - 0.15,
+                        color: 'rgba(255, 255, 255, 0.15)'
+                    });
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    particles.forEach(p => {
+                        p.x += p.speedX;
+                        p.y += p.speedY;
+                        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+                        ctx.fillStyle = p.color;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            }
+        }
+
+        const audio = document.getElementById('card-audio');
+        const playBtn = document.getElementById('dock-play-btn');
+        const prevBtn = document.getElementById('dock-prev-btn');
+        const nextBtn = document.getElementById('dock-next-btn');
+        const trackTitle = document.getElementById('dock-track-title');
+        const timeElapsed = document.getElementById('dock-time-elapsed');
+        const timeTotal = document.getElementById('dock-time-total');
+        const progressBar = document.getElementById('dock-progress-bar');
+        const progressFill = document.getElementById('dock-progress-fill');
+        const trackName = 'Die Young';
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        function setTrackInfo() {
+            trackTitle.textContent = trackName;
+            progressFill.style.width = '0%';
+            timeElapsed.textContent = '0:00';
+            timeTotal.textContent = '0:00';
+        }
+
+        let playbackStarted = false;
+
+        function playTrack() {
+            if (!audio) return;
+            const playPromise = audio.play();
+            if (playPromise) {
+                playPromise.then(() => {
+                    playbackStarted = true;
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                }).catch(err => console.log('Audio playback failed or blocked:', err));
+            }
+        }
+
+        function pauseTrack() {
+            if (!audio) return;
+            audio.pause();
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+
+        setTrackInfo();
+
+        const triggerAutoplay = () => {
+            if (playbackStarted || !audio || !audio.paused) return;
+            playTrack();
+        };
+
+        document.addEventListener('click', triggerAutoplay, { once: true });
+        document.addEventListener('pointerdown', triggerAutoplay, { once: true });
+        document.addEventListener('keydown', triggerAutoplay, { once: true });
+        document.addEventListener('mousemove', triggerAutoplay, { once: true });
+        document.addEventListener('scroll', triggerAutoplay, { once: true });
+        document.addEventListener('wheel', triggerAutoplay, { once: true });
+        document.addEventListener('touchstart', triggerAutoplay, { once: true });
+        document.addEventListener('touchmove', triggerAutoplay, { once: true });
+
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (audio.paused) {
+                playTrack();
+            } else {
+                pauseTrack();
+            }
+        });
+
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            audio.currentTime = 0;
+            playTrack();
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            audio.currentTime = 0;
+            playTrack();
+        });
+
+        // Volume Controller Logic
+        const volumeSlider = document.getElementById('dock-volume-slider');
+        const volumeBtn = document.getElementById('dock-volume-btn');
+        let lastVolume = 0.8;
+
+        // Set initial sound volume
+        audio.volume = 0.8;
+
+        if (volumeSlider && volumeBtn) {
+            volumeSlider.addEventListener('input', (e) => {
+                const vol = parseFloat(e.target.value);
+                audio.volume = vol;
+                if (vol === 0) {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-xmark"></i>';
+                } else if (vol < 0.5) {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-low"></i>';
+                } else {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
+                }
+            });
+
+            volumeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (audio.volume > 0) {
+                    lastVolume = audio.volume;
+                    audio.volume = 0;
+                    volumeSlider.value = 0;
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-xmark"></i>';
+                } else {
+                    audio.volume = lastVolume;
+                    volumeSlider.value = lastVolume;
+                    if (lastVolume < 0.5) {
+                        volumeBtn.innerHTML = '<i class="fas fa-volume-low"></i>';
+                    } else {
+                        volumeBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
+                    }
+                }
+            });
+        }
+
+        // Update progress bar and time stamps
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration) {
+                const percentage = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = `${percentage}%`;
+                timeElapsed.textContent = formatTime(audio.currentTime);
+                timeTotal.textContent = formatTime(audio.duration);
+            }
+        });
+
+        // Click on progress bar to seek
+        progressBar.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const rect = progressBar.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const width = rect.width;
+            if (audio.duration && width > 0) {
+                const newTime = (clickX / width) * audio.duration;
+                audio.currentTime = newTime;
+            }
+        });
+
+        // Auto play next track when current ends
+        audio.addEventListener('ended', () => {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            loadTrack(currentTrackIndex);
+            playTrack();
+        });
+
+    </script>
+
+<script>
+(function(){
+  function removeLoaders(){
+    var selectors=["#loading","#loader",".loading",".loader",".preloader",".pre-loader",".page-loader",".loading-screen",".loading-overlay","[class*="loading-screen"]","[class*="preloader"]","[id*="loader"]"];
+    selectors.forEach(function(sel){try{document.querySelectorAll(sel).forEach(function(el){el.style.setProperty("display","none","important");el.style.setProperty("visibility","hidden","important");el.setAttribute("aria-hidden","true");});}catch(e){}});
+    document.documentElement.classList.remove("loading","is-loading","page-loading","preloading");
+    if(document.body) document.body.classList.remove("loading","is-loading","page-loading","preloading");
+  }
+  window.addEventListener("load",function(){removeLoaders();setTimeout(removeLoaders,800);setTimeout(removeLoaders,2500);});
+  setTimeout(removeLoaders,5000);
+})();
+</script>
+</body>
+
+</html>
